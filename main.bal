@@ -15,16 +15,16 @@ public function main() returns error? {
             refreshUrl: rurl
         }
     });
-    sheets:Row existingColumnNames = check spreadsheetClient->getRow(SheetId, WorkspaceName, 1);
+    sheets:Row existingColumnNames = check spreadsheetClient->getRow("1teKpc-0Pe5tfgtK7Nql95iRUa8B3bO6hwfCMrQP6NwI", "Sheet1", 1);
     if existingColumnNames.values.length() == 0 {
         final string[] & readonly columnNames = [
             "Column1",
             "Column2"
         ];
-        check spreadsheetClient->appendRowToSheet(SheetId, WorkspaceName, columnNames);
+        check spreadsheetClient->appendRowToSheet("1teKpc-0Pe5tfgtK7Nql95iRUa8B3bO6hwfCMrQP6NwI", "Sheet1", columnNames);
     }
 
     (int|string|decimal)[] values = ["Test1", "Test2"];
-    check spreadsheetClient->appendRowToSheet(SheetId, WorkspaceName, values);
+    check spreadsheetClient->appendRowToSheet("1teKpc-0Pe5tfgtK7Nql95iRUa8B3bO6hwfCMrQP6NwI", "Sheet1", values);
     io:println("New row added to GSheet successfully!");
 }
